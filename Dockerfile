@@ -2,13 +2,12 @@ FROM ubuntu:14.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get -y upgrade && \
+RUN apt-get update && \
     apt-get install -y curl && \
     curl https://deb.nodesource.com/setup | bash - && \
-    apt-get install -y nodejs git ruby ruby-dev build-essential automake \
-        autoconf libjpeg-progs optipng && \
+    apt-get install -y nodejs git ruby libjpeg-progs optipng jekyll && \
     apt-get clean && \
-    gem install jekyll
+    rm -rf /var/lib/apt/lists/*
 
 ADD deploy.sh /
 
